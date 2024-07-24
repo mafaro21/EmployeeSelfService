@@ -1,0 +1,12 @@
+:root {
+    .bg-color {
+        background-color: #FFDB70;
+        /* background-color: black; */
+        padding: 0%;
+        min-height: 100vh;
+        /* width: 100vw; */
+        /* text-align: center; */
+    }
+
+
+}

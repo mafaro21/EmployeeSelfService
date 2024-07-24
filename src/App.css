@@ -1,0 +1,148 @@
+:root {
+  --background: #fff;
+  --text: #000;
+  --darkAccent: #F63E02;
+  --mainAccent: #FF6201;
+  --thirdAccent: #FAA300;
+  --lightAccent: #F3B700;
+  --lightlightAccent: #FFDB70
+}
+
+.logo {
+  height: 240px;
+}
+
+.login {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  padding: 9rem;
+  text-align: center;
+}
+
+/* INPUT FIELDS   */
+.input {
+  padding: 15px;
+  border-radius: 18px;
+  border: 1px solid var(--text);
+  background-color: var(--background);
+  /* width: auto; */
+  color: var(--text);
+  font-size: larger;
+  text-align: center;
+}
+
+/* INPUT FIELDS   */
+
+/* BUTTON */
+.button {
+  background-color: var(--darkAccent);
+  border-radius: 20px;
+  padding: 15px;
+  width: 110px;
+  color: var(--background);
+  outline: none;
+}
+
+.button:hover {
+  background-color: var(--thirdAccent);
+}
+
+.button-field {
+  padding-top: 12px;
+}
+
+/* BUTTON */
+
+/* NAVBAR */
+.navbar {
+  background-color: var(--darkAccent);
+  width: 100%;
+  padding: 15px;
+}
+
+.gradient {
+  background-image: linear-gradient(to right, var(--thirdAccent), var(--lightAccent), white);
+}
+
+.admin_gradient {
+  background-image: linear-gradient(to right,
+      #487c4b,
+      #a0ada0,
+      rgb(250, 248, 248));
+}
+
+/* SIDEBAR */
+.sidebar:hover {
+  /* text-decoration: underline; */
+  background-color: var(--darkAccent);
+  color: white;
+  border-radius: 20px;
+}
+
+/* SIDEBAR */
+
+/* ERROR PAGE */
+.bg-error {
+  background-color: var(--thirdAccent);
+  /* background-color: black; */
+  color: var(--background);
+  padding: 0%;
+  height: 100vh;
+  /* width: 100vw; */
+  text-align: center;
+}
+
+.img-error {
+  /* height: 400px; */
+  height: 400px;
+  /* width: 70vw; */
+}
+
+/* ERROR PAGE */
+
+/* HOMEPAGE */
+.homepage-box {
+  box-shadow: 1px 1px 6px grey;
+}
+
+.homepage-box:hover {
+  box-shadow: 6px 6px 8px var(--thirdAccent);
+}
+
+/* HOMEPAGE */
+
+/* DRAWER */
+.drawer:hover {
+  background-color: var(--thirdAccent);
+  color: white;
+  border-radius: 15%;
+  cursor: pointer;
+}
+
+.admin-drawer:hover {
+  background-color: var(--mainAccent);
+  color: white;
+  border-radius: 15%;
+  cursor: pointer;
+}
+
+.alert {
+  background-color: #000;
+}
+
+.alert:hover {
+  background-color: var(--lightAccent);
+}
+
+.menu {
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.bord {
+  border: 1px solid #D1D0D0;
+
+}
+
+.req:hover {
+  cursor: pointer;
+}
