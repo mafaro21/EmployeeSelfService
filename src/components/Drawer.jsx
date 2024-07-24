@@ -22,10 +22,10 @@ export default function Drawerr() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const LinkItems = [
-        { name: 'Home', link: '/' },
-        { name: 'admin Dashboard', link: '/dashboard' },
-        { name: 'login', link: '/login' },
-        { name: 'request Leave', link: '/request-leave' },
+        { id: 1, name: 'Home', link: '/' },
+        { id: 2, name: 'admin Dashboard', link: '/dashboard' },
+        { id: 3, name: 'login', link: '/login' },
+        { id: 4, name: 'request Leave', link: '/request-leave' },
     ]
 
     return (
@@ -53,8 +53,8 @@ export default function Drawerr() {
                     <DrawerBody>
                         <Box >
                             <Box>
-                                {LinkItems.map((link, key) => (
-                                    <Link to={link.link} >
+                                {LinkItems.map((link) => (
+                                    <Link to={link.link} key={link.id}>
                                         <Box h="" alignItems="center" mx="" p='2' className='sidebar' >
                                             <Text fontSize='18' p=''>
                                                 {link.name}

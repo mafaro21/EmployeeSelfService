@@ -104,9 +104,9 @@ export default function EmailForm() {
                     <Text as='u' fontSize={{ md: 'xl' }}>Select Domain</Text>
                     <RadioGroup onChange={DomainChoice} value={domain}>
                         <VStack spacing={1} mt='2' align='left'>
-                            <Radio colorScheme='orange' value="providencehumancapital.com">providencehumancapital.com</Radio>
-                            <Radio colorScheme='orange' value="providencehealth.co.zw">providencehealth.co.zw</Radio>
-                            <Radio colorScheme='orange' value="staffingsolutions.co.zw">staffingsolutions.co.zw</Radio>
+                            <Radio colorScheme='orange' value="email.com">email.com</Radio>
+                            <Radio colorScheme='orange' value="email.co.zw">email.co.zw</Radio>
+                            <Radio colorScheme='orange' value="email.org">email.org</Radio>
                         </VStack>
                     </RadioGroup>
                 </FormControl>
@@ -118,7 +118,7 @@ export default function EmailForm() {
                         size="md"
                         onChange={(e) => setReason(e.target.value)}
                         value={reason}
-                        focusBorderColor='orange'
+                        focusBorderColor='#FF6201'
                         mt='2'
                     />
                 </FormControl>

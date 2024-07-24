@@ -61,7 +61,7 @@
 }
 
 .gradient {
-  background-image: linear-gradient(to right, var(--thirdAccent), var(--lightAccent), white);
+  background-image: linear-gradient(to right, var(--lightAccent), var(--lightlightAccent), white);
 }
 
 .admin_gradient {

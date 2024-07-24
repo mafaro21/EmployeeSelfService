@@ -14,12 +14,13 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 
-
 export default function test() {
 
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [leave, setLeave] = useState('')
+    const [diffDays, setDiffDays] = useState('')
+    const [formDate, setFormDate] = useState('')
 
     const [loading, setLoading] = useState(false) // loading circle when user has submitted their id
 
@@ -36,11 +37,11 @@ export default function test() {
         // setLoading(true)
 
         const AppLeave = {
-            leave_type_id: 1,
-            employee_id: Employee.employee_role_id,
+            leave_type: leave,
+            // employee_id: Employee.employee_role_id,
             start_date: startDate,
             end_date: endDate,
-            request_advance: advance,
+            requested_days: diffDays,
             reason: '',
         }
         console.log(AppLeave)
@@ -89,6 +90,37 @@ export default function test() {
             />
         </Box> : ''
 
+    const differenceInDays = () => {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const difference = end - start
+        const numOfDays = Math.ceil(difference / (1000 * 60 * 60 * 24)) + 1
+
+        const dateArray = []
+        for (let day = 0; day < numOfDays; day++) {
+            const date = new Date(start);
+            // const endDate = new Date(end)
+            date.setDate(start.getDate() + day);
+            dateArray.push(date.getDay()); // Or use any date format you prefer
+        }
+
+        const leaveDay = []
+        for (let day = 0; day < dateArray.length; day++) {
+            const firstDay = dateArray[day]
+            const date = new Date(start);
+            date.setDate(start.getDate() + day);
+            // const test = dateArray[day].getDay()
+
+            if (firstDay == 6 || firstDay == 0) {
+                // console.log('weekend', firstDay)
+            } else {
+                leaveDay.push(firstDay)
+            }
+
+        }
+        setDiffDays(leaveDay.length);
+    }
+
     return (
         <>
             <Navbar />
@@ -110,23 +142,23 @@ export default function test() {
                             ml={{ md: '4' }}
                             isReadOnly
                             // style={{ border: '1px solid black' }}
-                            // focusBorderColor='lime'
+                            focusBorderColor='#FF6201'
                             value='10 days'
                         />
 
                         <Text mt='6' ml={{ md: '5' }} >Leave Type:</Text>
                         <Select mt={{ md: '4' }} size='md' width={{ md: '19%', base: '60%' }} ml={{ md: '4' }}
                             placeholder='Select Leave Type:'
-                            focusBorderColor='lime'
+                            focusBorderColor='#FF6201'
                             borderRadius='xl'
                             onChange={(e) => setLeave(e.target.value)}
                         >
                             <option value='Annual Leave'>Annual Leave</option>
-                            <option value='option2'>Maternity</option>
-                            <option value='option3'>Paternity</option>
-                            <option value='option4'>Sick Leave</option>
-                            <option value='option4'>Study Leave</option>
-                            <option value='option6'>Special</option>
+                            <option value='Maternity'>Maternity</option>
+                            <option value='Paternity'>Paternity</option>
+                            <option value='Sick Leave'>Sick Leave</option>
+                            <option value='Study Leave'>Study Leave</option>
+                            <option value='Special'>Special</option>
                         </Select>
                     </Box>
 
@@ -135,8 +167,8 @@ export default function test() {
                             Start Date:
                         </Text>
                         <Input mt={{ md: '4' }} size='md' width={{ md: '20%', base: '60%' }} ml={{ md: '4' }}
-                            type="datetime-local"
-                            focusBorderColor='lime'
+                            type="date"
+                            focusBorderColor='#FF6201'
                             borderRadius='xl'
                             onChange={(e) => setStartDate(e.target.value)}
                         />
@@ -145,23 +177,23 @@ export default function test() {
                             End Date:
                         </Text>
                         <Input mt={{ md: '4' }} size='md' width={{ md: '20%', base: '60%' }} ml={{ md: '4' }}
-                            type="datetime-local"
-                            focusBorderColor='lime'
+                            type="date"
+                            focusBorderColor='#FF6201'
                             borderRadius='xl'
                             onChange={(e) => setEndDate(e.target.value)}
 
                         />
+
                     </Box>
-                    <Box mt='5'>
-                        {/* <Checkbox
-                            onChange={() => setAdvance(!advance)}
-                            colorScheme='green'
-                        >Would you want your salary in advance?
-                        </Checkbox> */}
-                    </Box>
+
+                    <Flex mt={6}>
+                        <Button onClick={differenceInDays} colorScheme='orange'>calculate days</Button>
+                        <Box mt={2} ml={3}>{diffDays + ' day(s) are being requested'}</Box>
+                    </Flex>
+
                     <Box mt='7'>
                         <Text>Reason:</Text>
-                        <Textarea placeholder='Specify your reason for leave' focusBorderColor='lime' />
+                        <Textarea placeholder='Specify your reason for leave' focusBorderColor='#FF6201' />
                     </Box>
                     {loading ? Loader : <Box pt={3} >
 
