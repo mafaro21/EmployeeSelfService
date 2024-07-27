@@ -123,11 +123,11 @@ function Navbar() {
                                     bg='black'
                                     color='white'
                                 />) : (
-                                    // <Avatar
-                                    //     name=''
-                                    //     bg='black'
-                                    // />
-                                    null
+                                    <Avatar
+                                        name=''
+                                        bg='black'
+                                    />
+                                    // null
                                 )}
 
                             </MenuButton>
