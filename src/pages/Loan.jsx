@@ -141,7 +141,8 @@ export default function Loan() {
                         >
                             <option value='Medical'>Medical</option>
                             <option value='Education'>Education</option>
-                            <option value='Retirees'>Retirees</option>
+                            <option value='Housing'>Housing</option>
+                            <option value='Car'>Car</option>
 
                         </Select>
                     </Box>

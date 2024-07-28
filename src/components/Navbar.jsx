@@ -136,7 +136,7 @@ function Navbar() {
                                     <Text fontSize='xs' as='b'>{name}</Text>
                                     {/* <Text fontSize='xs' >IT ADMIN</Text> */}
                                 </Box>
-                                <MenuItem className='alert'>Edit My Profile</MenuItem>
+                                <Link to={'/profile'}><MenuItem className='alert'>Edit My Profile</MenuItem></Link>
                                 <MenuItem className='alert'>FAQs</MenuItem>
                                 <MenuDivider />
                                 <MenuItem onClick={onOpen} className='alert'>Log Out</MenuItem>

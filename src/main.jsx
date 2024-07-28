@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar.jsx";
 import RequestLeave from "./pages/RequestLeave.jsx";
 import Loan from "./pages/Loan.jsx";
 import Info from "./pages/info.jsx";
+import Profile from "./pages/Profile.jsx";
 import Requisition from "./pages/Requisition.jsx";
 import Dashboard from "./admin/Dashboard.jsx";
 import LeaveRequests from "./admin/LeaveRequests.jsx";
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/general-information",
     element: <Info />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

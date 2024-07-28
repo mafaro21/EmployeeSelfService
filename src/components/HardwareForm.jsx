@@ -126,9 +126,9 @@ export default function HardwareForm() {
                             <Checkbox value="Microsoft Office" fontSize={{ md: 'xl' }} colorScheme='orange'>Microsoft Office</Checkbox>
                             <Checkbox value="Adobe Acrobat" colorScheme='orange'>Adobe Acrobat</Checkbox>
                             <Checkbox value="Google Chrome" colorScheme='orange'>Google Chrome</Checkbox>
-                            <Checkbox value="Belina" colorScheme='orange'>Belina</Checkbox>
+                            {/* <Checkbox value="Belina" colorScheme='orange'>Belina</Checkbox>
                             <Checkbox value="Quick Books" colorScheme='orange'>Quick Books</Checkbox>
-                            <Checkbox value="Pastel" colorScheme='orange'>Pastel</Checkbox>
+                            <Checkbox value="Pastel" colorScheme='orange'>Pastel</Checkbox> */}
                         </HStack>
                     </CheckboxGroup>
                 </FormControl>

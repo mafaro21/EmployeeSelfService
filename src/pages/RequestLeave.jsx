@@ -33,6 +33,7 @@ export default function test() {
 
     const handleSubmit = (e) => { //handling the id the user has entered after they click login
         e.preventDefault()
+        differenceInDays() //in the event the user doesn't check
 
         // setLoading(true)
 
@@ -42,7 +43,7 @@ export default function test() {
             start_date: startDate,
             end_date: endDate,
             requested_days: diffDays,
-            reason: '',
+            // reason: '',
         }
         console.log(AppLeave)
 
