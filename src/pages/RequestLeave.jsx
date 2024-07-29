@@ -11,6 +11,7 @@ import '../App.css'
 import { API } from '../config'
 
 import { useSelector } from 'react-redux';
+import { useForm } from "react-hook-form"
 import axios from 'axios';
 
 
@@ -22,6 +23,8 @@ export default function test() {
     const [diffDays, setDiffDays] = useState('')
     const [formDate, setFormDate] = useState('')
 
+    const { register, formState: { errors }, handleSubmit } = useForm()
+
     const [loading, setLoading] = useState(false) // loading circle when user has submitted their id
 
     const Employee = useSelector((state) => state.auth.employee)
@@ -31,54 +34,54 @@ export default function test() {
     const [advance, setAdvance] = useState(false)
 
 
-    const handleSubmit = (e) => { //handling the id the user has entered after they click login
-        e.preventDefault()
-        differenceInDays() //in the event the user doesn't check
+    // const handleSubmit = (e) => { //handling the id the user has entered after they click login
+    //     e.preventDefault()
+    //     differenceInDays() //in the event the user doesn't check
 
-        // setLoading(true)
+    //     // setLoading(true)
 
-        const AppLeave = {
-            leave_type: leave,
-            // employee_id: Employee.employee_role_id,
-            start_date: startDate,
-            end_date: endDate,
-            requested_days: diffDays,
-            // reason: '',
-        }
-        console.log(AppLeave)
+    //     const AppLeave = {
+    //         leave_type: leave,
+    //         // employee_id: Employee.employee_role_id,
+    //         start_date: startDate,
+    //         end_date: endDate,
+    //         requested_days: diffDays,
+    //         // reason: '',
+    //     }
+    //     console.log(AppLeave)
 
-        // axios.post(`${API}/leave/application`, AppLeave)
-        //     .then((res) => {
-        //         console.log(res.data)
+    //     // axios.post(`${API}/leave/application`, AppLeave)
+    //     //     .then((res) => {
+    //     //         console.log(res.data)
 
-        //         toast({
-        //             title: 'Application Sent',
-        //             description: res.data.message,
-        //             status: 'success',
-        //             duration: 4000,
-        //             isClosable: true,
-        //             position: 'top-right'
-        //         })
-        //     })
-        //     .catch((error) => {
-        //         console.log(error.data)
+    //     //         toast({
+    //     //             title: 'Application Sent',
+    //     //             description: res.data.message,
+    //     //             status: 'success',
+    //     //             duration: 4000,
+    //     //             isClosable: true,
+    //     //             position: 'top-right'
+    //     //         })
+    //     //     })
+    //     //     .catch((error) => {
+    //     //         console.log(error.data)
 
-        //         toast({
-        //             title: 'Leave Application Failed',
-        //             description: error.data,
-        //             status: 'error',
-        //             duration: 4000,
-        //             isClosable: true,
-        //             position: 'top-right'
-        //         })
-        //     })
-        //     .finally(() => {
-        //         setLoading(false)
-        //     })
+    //     //         toast({
+    //     //             title: 'Leave Application Failed',
+    //     //             description: error.data,
+    //     //             status: 'error',
+    //     //             duration: 4000,
+    //     //             isClosable: true,
+    //     //             position: 'top-right'
+    //     //         })
+    //     //     })
+    //     //     .finally(() => {
+    //     //         setLoading(false)
+    //     //     })
 
 
 
-    }
+    // }
 
     const Loader = loading ? // loading circle
         <Box pt={4}>
@@ -122,12 +125,17 @@ export default function test() {
         setDiffDays(leaveDay.length);
     }
 
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+
+
     return (
         <>
             <Navbar />
             <Container maxW='1100px' color='' bg='' pt='4' >
                 {/* <Center bg='red'> */}
-                <Box >
+                <form onSubmit={handleSubmit(onSubmit)}>
                     {/* <Center> */}
                     <Text fontSize={{ md: "3xl", base: "xl" }}>
                         Apply for Leave
@@ -152,7 +160,9 @@ export default function test() {
                             placeholder='Select Leave Type:'
                             focusBorderColor='#FF6201'
                             borderRadius='xl'
-                            onChange={(e) => setLeave(e.target.value)}
+                            // onChange={(e) => setLeave(e.target.value)}
+                            {...register('leaveType')}
+
                         >
                             <option value='Annual Leave'>Annual Leave</option>
                             <option value='Maternity'>Maternity</option>
@@ -172,6 +182,7 @@ export default function test() {
                             focusBorderColor='#FF6201'
                             borderRadius='xl'
                             onChange={(e) => setStartDate(e.target.value)}
+                        // {...register('startDate')}
                         />
 
                         <Text mt='6' ml={{ md: '4' }}>
@@ -182,7 +193,7 @@ export default function test() {
                             focusBorderColor='#FF6201'
                             borderRadius='xl'
                             onChange={(e) => setEndDate(e.target.value)}
-
+                        // {...register('endDate')}
                         />
 
                     </Box>
@@ -194,7 +205,7 @@ export default function test() {
 
                     <Box mt='7'>
                         <Text>Reason:</Text>
-                        <Textarea placeholder='Specify your reason for leave' focusBorderColor='#FF6201' />
+                        <Textarea placeholder='Specify your reason for leave' focusBorderColor='#FF6201' {...register('reason')} />
                     </Box>
                     {loading ? Loader : <Box pt={3} >
 
@@ -202,13 +213,14 @@ export default function test() {
                             size='md'
                             mt='6'
                             onClick={handleSubmit}
+                            type="submit"
 
                         >
                             Submit Leave Application
                         </Button>
                     </Box>}
 
-                </Box>
+                </form>
                 {/* <Box>Leave type: {leave}</Box>
                 <Box>start date: {startDate}</Box>
                 <Box>end date: {endDate}</Box> */}

@@ -17,7 +17,7 @@ This project is a site that aims to allow employees to action certain tasks with
 ### To Try:
 
 + react query
-+ react hook form
+++ react hook form
 + NestJS ???
 + GraphQL
 + Passport.js
