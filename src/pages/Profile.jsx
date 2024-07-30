@@ -13,11 +13,11 @@ export default function Profile() {
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const profile = [
-        { name: 'First Name', margin: '9', value: setFirstName, base: '9', place: 'from state', type: 'text' },
-        { name: 'Last Name', margin: '9', value: setLastName, base: '9', place: 'from state', type: 'text' },
-        { name: 'Address', margin: '14', value: setAddress, base: '14', place: 'from state', type: 'text' },
-        { name: 'Phone Number', margin: '1', value: setPhone, base: '1', place: '0123456', type: 'number' },
-        { name: 'Branch Code', margin: '6', value: setBranchCode, base: '6', place: 'from state', type: 'text' },
+        { name: 'First Name', margin: '9', value: 'firstName', base: '9', place: 'from state', type: 'text' },
+        { name: 'Last Name', margin: '9', value: 'lastName', base: '9', place: 'from state', type: 'text' },
+        { name: 'Address', margin: '14', value: 'address', base: '14', place: 'from state', type: 'text' },
+        { name: 'Phone Number', margin: '1', value: 'phone', base: '1', place: '0123456', type: 'number' },
+        { name: 'Branch Code', margin: '6', value: 'branchCode', base: '6', place: 'from state', type: 'text' },
     ]
 
     const onSubmit = (data) => {
@@ -45,11 +45,11 @@ export default function Profile() {
                                     size='md'
                                     width={{ md: '450px' }}
                                     type={profile.type}
-                                    onChange={(e) => profile.value(e.target.value)}
-                                    // {...register(profile.value)}
+                                    // onChange={(e) => profile.value(e.target.value)}
+                                    {...register(profile.value)}
                                     focusBorderColor='#FF6201'
-                                    value={profile.place}
-                                    disabled={disabled == true ? 'disabled' : null}
+                                    // value={profile.place}
+                                    disabled={disabled ? 'disabled' : null}
                                 />
 
                             </Stack>
@@ -70,8 +70,8 @@ export default function Profile() {
                             <Button colorScheme='orange'
                                 size='md'
                                 mt='6'
-                            // onClick={() => setDisabled(!disabled)}
-
+                                // onClick={() => setDisabled(!disabled)}
+                                type='submit'
                             >
                                 Save Changes
                             </Button>
