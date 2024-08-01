@@ -1,7 +1,9 @@
 import { React, useState } from 'react'
 import Navbar from '../components/Navbar'
-import { Container, Box, Text, Stack, Input, Flex, Button } from '@chakra-ui/react'
+import { Container, Box, Text, Stack, Input, Flex, Button, useToast } from '@chakra-ui/react'
 import { useForm } from "react-hook-form"
+import axios from 'axios'
+import Loader from '../components/Loader'
 
 export default function Profile() {
     const [firstName, setFirstName] = useState('')
@@ -9,8 +11,11 @@ export default function Profile() {
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
     const [branchCode, setBranchCode] = useState('')
+    const [loading, setLoading] = useState(false)
     const [disabled, setDisabled] = useState(true)
     const { register, formState: { errors }, handleSubmit } = useForm()
+    const toast = useToast();
+
 
     const profile = [
         { name: 'First Name', margin: '9', value: 'firstName', base: '9', place: 'from state', type: 'text' },
@@ -21,7 +26,33 @@ export default function Profile() {
     ]
 
     const onSubmit = (data) => {
-        console.log(data)
+        setLoading(true)
+        axios.put('http://localhost:8888/employee/edit', data)
+            .then((res) => {
+                console.log(res.data)
+                toast({
+                    title: "Profile Updated!",
+                    description: "You have successfully logged in.",
+                    status: "success",
+                    duration: 4000,
+                    isClosable: true,
+                    position: "top-right",
+                });
+            })
+            .catch((err) => {
+                console.log(err)
+                toast({
+                    title: "Error Updating Profile!",
+                    description: "You have successfully logged in.",
+                    status: "error",
+                    duration: 4000,
+                    isClosable: true,
+                    position: "top-right",
+                });
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     return (
@@ -66,18 +97,20 @@ export default function Profile() {
                     </Button>
 
                     {disabled ? null :
-                        <Box>
-                            <Button colorScheme='orange'
-                                size='md'
-                                mt='6'
-                                // onClick={() => setDisabled(!disabled)}
-                                type='submit'
-                            >
-                                Save Changes
-                            </Button>
-                        </Box>
+                        loading ? <Loader /> :
+                            <Box>
+                                <Button colorScheme='orange'
+                                    size='md'
+                                    mt='6'
+                                    // onClick={() => setDisabled(!disabled)}
+                                    type='submit'
+                                >
+                                    Save Changes
+                                </Button>
+                            </Box>
                     }
                 </form>
+                {/* <Loader /> */}
             </Container>
         </>
     )

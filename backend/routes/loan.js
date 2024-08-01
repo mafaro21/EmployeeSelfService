@@ -4,8 +4,8 @@ const router = express.Router()
 //loan application
 router.post('/apply', async (req, res) => {
     if (!req) { return res.status(400) }
-
-    console.log('loan application')
+    console.log(req.body)
+    res.send('loan application')
 })
 
 //loan decision

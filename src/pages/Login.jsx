@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../Store/Auth";
 import { useToast } from "@chakra-ui/react";
 import { useForm } from "react-hook-form"
+import Loader from '../components/Loader'
 
 function Login() {
   const [placeText, setPlaceText] = useState(false); //text that shows up when user clicks in input field
@@ -114,23 +115,66 @@ function Login() {
   //     }
   // };
 
-  const Loader = loading ? ( // loading circle
-    <Box pt={4}>
-      <Spinner
-        color="#007a41"
-        p={4}
-        thickness="3px"
-        speed="0.85s"
-        emptyColor="gray.200"
-      />
-    </Box>
-  ) : (
-    ""
-  );
+  // const Loader = loading ? ( // loading circle
+  //   <Box pt={4}>
+  //     <Spinner
+  //       color="#FF6201"
+  //       p={4}
+  //       thickness="3px"
+  //       speed="0.85s"
+  //       emptyColor="gray.200"
+  //     />
+  //   </Box>
+  // ) : (
+  //   ""
+  // );
 
 
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    setLoading(true);
+    setDisabled(true);
+
+    axios.post(`http://localhost:8888/auth/login`, data)
+      .then((res) => {
+        console.log(res.data);
+        // const empData = res.data;
+        // dispatch(
+        //   authActions.setLogin({
+        //     employee: empData.employee,
+        //     token: empData.token,
+        //     isAuthenticated: true,
+        //   })
+        // );
+
+        toast({
+          title: "Logged In!",
+          description: "You have successfully logged in.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast({
+          title: "This user may not exist",
+          description: "You have successfully logged in.",
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+        setDisabled(false);
+      })
+  }
+
 
   return (
     <>
@@ -180,7 +224,7 @@ function Login() {
             {placeTextDiv}
 
             {loading ? (
-              Loader
+              <Loader />
             ) : (
               <Box pt={3}>
                 <Button
@@ -196,6 +240,7 @@ function Login() {
             )}
           </form>
         </Box>
+
       </Center>
     </>
   );

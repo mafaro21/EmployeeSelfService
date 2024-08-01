@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import '../App.css'
 import { API } from '../config'
-
+import Loader from '../components/Loader'
 import { useSelector } from 'react-redux';
 import { useForm } from "react-hook-form"
 import axios from 'axios';
@@ -23,7 +23,7 @@ export default function test() {
     const [diffDays, setDiffDays] = useState('')
     const [formDate, setFormDate] = useState('')
 
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    // const { register, formState: { errors }, handleSubmit } = useForm()
 
     const [loading, setLoading] = useState(false) // loading circle when user has submitted their id
 
@@ -34,65 +34,53 @@ export default function test() {
     const [advance, setAdvance] = useState(false)
 
 
-    // const handleSubmit = (e) => { //handling the id the user has entered after they click login
-    //     e.preventDefault()
-    //     differenceInDays() //in the event the user doesn't check
+    const handleSubmit = (e) => { //handling the id the user has entered after they click login
+        e.preventDefault()
+        // differenceInDays() //in the event the user doesn't check
 
-    //     // setLoading(true)
+        setLoading(true)
 
-    //     const AppLeave = {
-    //         leave_type: leave,
-    //         // employee_id: Employee.employee_role_id,
-    //         start_date: startDate,
-    //         end_date: endDate,
-    //         requested_days: diffDays,
-    //         // reason: '',
-    //     }
-    //     console.log(AppLeave)
+        const AppLeave = {
+            leave_type: leave,
+            // employee_id: Employee.employee_role_id,
+            start_date: startDate,
+            end_date: endDate,
+            // requested_days: diffDays,
+            // reason: '',
+        }
+        console.log(AppLeave)
 
-    //     // axios.post(`${API}/leave/application`, AppLeave)
-    //     //     .then((res) => {
-    //     //         console.log(res.data)
+        axios.post('http://localhost:8888/leave/request', AppLeave)
+            .then((res) => {
+                console.log(res.data)
+                toast({
+                    title: 'Leave Application Sent',
+                    description: 'Application waiting approval',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                    position: 'top-right'
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+                toast({
+                    title: 'Application Error',
+                    // description: res.data.message,
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                    position: 'top-right'
+                })
 
-    //     //         toast({
-    //     //             title: 'Application Sent',
-    //     //             description: res.data.message,
-    //     //             status: 'success',
-    //     //             duration: 4000,
-    //     //             isClosable: true,
-    //     //             position: 'top-right'
-    //     //         })
-    //     //     })
-    //     //     .catch((error) => {
-    //     //         console.log(error.data)
-
-    //     //         toast({
-    //     //             title: 'Leave Application Failed',
-    //     //             description: error.data,
-    //     //             status: 'error',
-    //     //             duration: 4000,
-    //     //             isClosable: true,
-    //     //             position: 'top-right'
-    //     //         })
-    //     //     })
-    //     //     .finally(() => {
-    //     //         setLoading(false)
-    //     //     })
-
+            })
+            .finally(() => {
+                setLoading(false)
+            })
 
 
-    // }
 
-    const Loader = loading ? // loading circle
-        <Box pt={4}>
-            <Spinner
-                color='#007a41'
-                p={4}
-                thickness='3px'
-                speed='0.85s'
-                emptyColor='gray.200'
-            />
-        </Box> : ''
+    }
 
     const differenceInDays = () => {
         const start = new Date(startDate);
@@ -125,18 +113,42 @@ export default function test() {
         setDiffDays(leaveDay.length);
     }
 
-    const onSubmit = (data) => {
-        console.log(data)
-    }
+    // const onSubmit = (data) => {
+    //     console.log(data)
+
+    //     axios.post('localhost:8888/leave/request', data)
+    //         .then((res) => {
+    //             console.log(res.data)
+    //             toast({
+    //                 title: 'Application Sent',
+    //                 // description: res.data.message,
+    //                 status: 'success',
+    //                 duration: 4000,
+    //                 isClosable: true,
+    //                 position: 'top-right'
+    //             })
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.data)
+    //             toast({
+    //                 title: 'Application Sent',
+    //                 // description: res.data.message,
+    //                 status: 'success',
+    //                 duration: 4000,
+    //                 isClosable: true,
+    //                 position: 'top-right'
+    //             })
+
+    //         })
+    // }
 
 
     return (
         <>
             <Navbar />
             <Container maxW='1100px' color='' bg='' pt='4' >
-                {/* <Center bg='red'> */}
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    {/* <Center> */}
+                <form >
+                    {/* onSubmit={handleSubmit(onSubmit)} */}
                     <Text fontSize={{ md: "3xl", base: "xl" }}>
                         Apply for Leave
                     </Text>
@@ -160,8 +172,8 @@ export default function test() {
                             placeholder='Select Leave Type:'
                             focusBorderColor='#FF6201'
                             borderRadius='xl'
-                            // onChange={(e) => setLeave(e.target.value)}
-                            {...register('leaveType')}
+                            onChange={(e) => setLeave(e.target.value)}
+                        // {...register('leaveType')}
 
                         >
                             <option value='Annual Leave'>Annual Leave</option>
@@ -205,9 +217,10 @@ export default function test() {
 
                     <Box mt='7'>
                         <Text>Reason:</Text>
-                        <Textarea placeholder='Specify your reason for leave' focusBorderColor='#FF6201' {...register('reason')} />
+                        <Textarea placeholder='Specify your reason for leave' focusBorderColor='#FF6201' />
+                        {/* {...register('reason')} */}
                     </Box>
-                    {loading ? Loader : <Box pt={3} >
+                    {loading ? <Loader /> : <Box pt={3} >
 
                         <Button colorScheme='orange'
                             size='md'
@@ -219,7 +232,6 @@ export default function test() {
                             Submit Leave Application
                         </Button>
                     </Box>}
-
                 </form>
                 {/* <Box>Leave type: {leave}</Box>
                 <Box>start date: {startDate}</Box>

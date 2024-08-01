@@ -9,15 +9,15 @@ router.get('/test', (req, res) => {
 router.post('/add', async (req, res) => {
     if (!req) { return res.status(400) }
 
-
     res.send('adding employee')
 })
 
 //editing employee
 router.put('/edit', async (req, res) => {
     if (!req) { return res.status(400) }
+    console.log(req.body)
 
-    res.send('modifying employee')
+    // res.send('modifying employee')
 })
 
 //deleting employee

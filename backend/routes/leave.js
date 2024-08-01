@@ -6,6 +6,8 @@ router.post('/request', async (req, res) => {
     if (!req) { return res.status(400) }
 
     res.send('leave request')
+
+    console.log(req.body)
 })
 
 //deciding whether to approve or deny

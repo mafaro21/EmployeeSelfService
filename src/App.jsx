@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+// import Loader from './components/Loader'
 
 function App() {
   const [time, setTime] = useState("");
@@ -107,6 +108,7 @@ function App() {
             </Link>
           ))}
         </SimpleGrid>
+        {/* <Loader /> */}
       </Container>
     </>
   );

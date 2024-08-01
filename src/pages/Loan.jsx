@@ -11,6 +11,8 @@ import {
 
 } from '@chakra-ui/react'
 import { useForm } from "react-hook-form"
+import axios from 'axios'
+import Loader from '../components/Loader'
 
 export default function Loan() {
 
@@ -33,18 +35,33 @@ export default function Loan() {
     ]
 
     const onSubmit = (data) => {
-        console.log(data)
-
-        if (data) {
-            toast({
-                title: 'Success',
-                description: 'Looks good',
-                status: 'success',
-                duration: 4000,
-                isClosable: true,
-                position: 'top-right'
+        setLoading(true)
+        axios.post('http://localhost:8888/loan/apply', data)
+            .then((res) => {
+                console.log(res.data)
+                toast({
+                    title: "Leave Application Sent!",
+                    description: "Application waiting approval",
+                    status: "success",
+                    duration: 4000,
+                    isClosable: true,
+                    position: "top-right",
+                });
             })
-        }
+            .catch((err) => {
+                console.log(err)
+                toast({
+                    title: "Application Error",
+                    description: "You have successfully logged in.",
+                    status: "error",
+                    duration: 4000,
+                    isClosable: true,
+                    position: "top-right",
+                });
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     return (
@@ -202,16 +219,17 @@ export default function Loan() {
                         <Text mt='1'>By applying for this loan, the Borrower agrees to the terms set forth by the Lender, including the repayment of the loan amount with an agreed-upon interest rate. The Borrower also consents to any applicable fees associated with the loan. Funds will be disbursed to the Borrower's specified account upon approval, and the Borrower commits to adhering to the repayment schedule detailed in the agreement. Failure to meet these obligations may result in additional charges or legal action.</Text>
                         <Checkbox mt='4' colorScheme='orange' required>I agree and accept to the terms</Checkbox>
 
-
                     </Box>
-                    <Button colorScheme='orange'
-                        size='md'
-                        mt='5'
-                        mb='10'
-                        type='submit'
-                    >
-                        Submit Loan Application
-                    </Button>
+                    {loading ? <Loader /> :
+                        <Button colorScheme='orange'
+                            size='md'
+                            mt='5'
+                            mb='10'
+                            type='submit'
+                        >
+                            Submit Loan Application
+                        </Button>}
+                    {/* <Loader /> */}
                 </form>
             </Container>
         </>
