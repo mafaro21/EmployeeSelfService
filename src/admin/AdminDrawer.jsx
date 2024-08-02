@@ -45,7 +45,7 @@ export default function Drawerr() {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bg="#134539" color='white'>
+        <DrawerContent bg="#280000" color='white'>
           <DrawerCloseButton />
           <DrawerHeader>Navigate</DrawerHeader>
 

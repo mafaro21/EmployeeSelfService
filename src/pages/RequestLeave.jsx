@@ -164,6 +164,7 @@ export default function test() {
                             isReadOnly
                             // style={{ border: '1px solid black' }}
                             focusBorderColor='#FF6201'
+                            borderColor={'#bdbdbd'}
                             value='10 days'
                         />
 
@@ -171,6 +172,7 @@ export default function test() {
                         <Select mt={{ md: '4' }} size='md' width={{ md: '19%', base: '60%' }} ml={{ md: '4' }}
                             placeholder='Select Leave Type:'
                             focusBorderColor='#FF6201'
+                            borderColor={'#bdbdbd'}
                             borderRadius='xl'
                             onChange={(e) => setLeave(e.target.value)}
                         // {...register('leaveType')}
@@ -192,6 +194,7 @@ export default function test() {
                         <Input mt={{ md: '4' }} size='md' width={{ md: '20%', base: '60%' }} ml={{ md: '4' }}
                             type="date"
                             focusBorderColor='#FF6201'
+                            borderColor={'#bdbdbd'}
                             borderRadius='xl'
                             onChange={(e) => setStartDate(e.target.value)}
                         // {...register('startDate')}
@@ -203,6 +206,7 @@ export default function test() {
                         <Input mt={{ md: '4' }} size='md' width={{ md: '20%', base: '60%' }} ml={{ md: '4' }}
                             type="date"
                             focusBorderColor='#FF6201'
+                            borderColor={'#bdbdbd'}
                             borderRadius='xl'
                             onChange={(e) => setEndDate(e.target.value)}
                         // {...register('endDate')}
@@ -217,7 +221,7 @@ export default function test() {
 
                     <Box mt='7'>
                         <Text>Reason:</Text>
-                        <Textarea placeholder='Specify your reason for leave' focusBorderColor='#FF6201' />
+                        <Textarea placeholder='Specify your reason for leave' borderColor={'#bdbdbd'} focusBorderColor='#FF6201' />
                         {/* {...register('reason')} */}
                     </Box>
                     {loading ? <Loader /> : <Box pt={3} >

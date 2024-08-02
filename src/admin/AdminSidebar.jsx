@@ -13,7 +13,7 @@ export default function AdminSidebar() {
   return (
     <>
       <Box w="17.5%" color="white">
-        <Box bg="#487c4b" pos="fixed" h="100%" w="15%">
+        <Box bg="#F63E02" pos="fixed" h="100%" w="15%">
           {LinkItems.map((link) => (
             <Link to={link.link}>
               <Box h="" alignItems="center" mx="" p="3" className="sidebar">

@@ -79,6 +79,7 @@ export default function Loan() {
                         <Text mt='6'>Reason for Loan Application:</Text>
                         <Select mt={{ md: '4' }} size='md' width={{ md: '19%', base: '79%' }} ml={{ md: '4' }}
                             placeholder='Select Reason:'
+                            borderColor={'#bdbdbd'}
                             focusBorderColor='#FF6201'
                             borderRadius='xl'
                             {...register('reason')}
@@ -94,7 +95,7 @@ export default function Loan() {
                         <Text as='u' fontSize={{ md: 'xl' }}>Loan Details</Text>
                         <Flex>
                             <Text mt='2'>Choose Currency:</Text>
-                            <Select width={{ md: '8%' }} ml='4' {...register('currency')} onChange={(e) => setCurrency(e.target.value)} focusBorderColor='#FF6201'>
+                            <Select width={{ md: '8%' }} borderColor={'#bdbdbd'} ml='4' {...register('currency')} onChange={(e) => setCurrency(e.target.value)} focusBorderColor='#FF6201'>
                                 <option value='ZWL'>ZWL</option>
                                 <option value='USD'>USD</option>
                             </Select>
@@ -113,6 +114,7 @@ export default function Loan() {
                                         width={{ md: '80%' }}
                                         {...register('loanAmount')}
                                         type='number' placeholder='enter loan amount'
+                                        borderColor={'#bdbdbd'}
                                         focusBorderColor='#FF6201'
                                         required
                                     />
@@ -132,6 +134,7 @@ export default function Loan() {
                                         width={{ md: '80%' }}
                                         {...register('loanInstallment')}
                                         type='number' placeholder='enter loan installment'
+                                        borderColor={'#bdbdbd'}
                                         focusBorderColor='#FF6201'
                                         required
                                     />
@@ -163,6 +166,7 @@ export default function Loan() {
                                         width={{ md: '80%' }}
                                         {...register('gross')}
                                         type='number' placeholder='enter loan amount'
+                                        borderColor={'#bdbdbd'}
                                         focusBorderColor='#FF6201'
                                         required
                                     />
@@ -182,6 +186,7 @@ export default function Loan() {
                                         width={{ md: '80%' }}
                                         {...register('net')}
                                         type='number' placeholder='enter loan installment'
+                                        borderColor={'#bdbdbd'}
                                         focusBorderColor='#FF6201'
                                         isRequired
                                     />
@@ -195,20 +200,20 @@ export default function Loan() {
                         {bankDetails.map((bank, key) => (
                             <Flex mt='2'>
 
-                                <Text mt={{ md: '6', base: '3' }}>{bank.name}:</Text>
-                                <Stack spacing={4} ml='10'>
-                                    <Input
-                                        mt={{ md: '4', base: '1' }}
-                                        ml={{ md: bank.margin, base: bank.base }}
-                                        size='md'
-                                        width={{ md: '450px' }}
-                                        type='number'
-                                        {...register(bank.value)}
-                                        focusBorderColor='#FF6201'
-                                        required
-                                    />
-
-                                </Stack>
+                                <Text mt={{ md: '6', base: '3' }} >{bank.name} :</Text>
+                                <Spacer />
+                                <Input
+                                    mt={{ md: '4', base: '1' }}
+                                    // ml={{ md: bank.margin, base: bank.base }}
+                                    size='md'
+                                    // width={{ md: '850px' }}
+                                    type='number'
+                                    {...register(bank.value)}
+                                    focusBorderColor='#FF6201'
+                                    borderColor={'#bdbdbd'}
+                                    width={'85%'}
+                                    required
+                                />
                             </Flex>
                         ))}
                     </Box>
@@ -217,7 +222,7 @@ export default function Loan() {
                         <Text as='u' fontSize={{ md: 'xl' }}>Declaration</Text>
 
                         <Text mt='1'>By applying for this loan, the Borrower agrees to the terms set forth by the Lender, including the repayment of the loan amount with an agreed-upon interest rate. The Borrower also consents to any applicable fees associated with the loan. Funds will be disbursed to the Borrower's specified account upon approval, and the Borrower commits to adhering to the repayment schedule detailed in the agreement. Failure to meet these obligations may result in additional charges or legal action.</Text>
-                        <Checkbox mt='4' colorScheme='orange' required>I agree and accept to the terms</Checkbox>
+                        <Checkbox mt='4' borderColor={'#bdbdbd'} colorScheme='orange' required>I agree and accept to the terms</Checkbox>
 
                     </Box>
                     {loading ? <Loader /> :

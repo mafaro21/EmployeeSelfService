@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import Navbar from '../components/Navbar'
-import { Container, Box, Text, Stack, Input, Flex, Button, useToast } from '@chakra-ui/react'
+import { Container, Box, Text, Stack, Input, Flex, Button, useToast, Spacer } from '@chakra-ui/react'
 import { useForm } from "react-hook-form"
 import axios from 'axios'
 import Loader from '../components/Loader'
@@ -66,24 +66,23 @@ export default function Profile() {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     {profile.map((profile, key) => (
-                        <Flex mt='2'>
+                        <Flex mt='2' flexDirection={{ base: 'column', md: 'row' }}>
 
-                            <Text mt={{ md: '6', base: '3' }}>{profile.name}:</Text>
-                            <Stack spacing={4} ml='10'>
-                                <Input
-                                    mt={{ md: '4', base: '1' }}
-                                    ml={{ md: profile.margin, base: profile.base }}
-                                    size='md'
-                                    width={{ md: '450px' }}
-                                    type={profile.type}
-                                    // onChange={(e) => profile.value(e.target.value)}
-                                    {...register(profile.value)}
-                                    focusBorderColor='#FF6201'
-                                    // value={profile.place}
-                                    disabled={disabled ? 'disabled' : null}
-                                />
-
-                            </Stack>
+                            <Text mt={{ md: '6', base: '3' }}>{profile.name} :</Text>
+                            <Spacer />
+                            <Input
+                                mt={{ md: '4', base: '1' }}
+                                // ml={{ md: profile.margin, base: profile.base }}
+                                size='md'
+                                width={'88%'}
+                                type={profile.type}
+                                // onChange={(e) => profile.value(e.target.value)}
+                                {...register(profile.value)}
+                                borderColor={'#bdbdbd'}
+                                focusBorderColor='#FF6201'
+                                // value={profile.place}
+                                disabled={disabled ? 'disabled' : null}
+                            />
                         </Flex>
                     ))}
 

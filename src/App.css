@@ -146,3 +146,8 @@
 .req:hover {
   cursor: pointer;
 }
+
+.admin-bg {
+  background-color: #280000;
+  min-height: 100vh;
+}

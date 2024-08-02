@@ -3,16 +3,17 @@ import AdminNavbar from "./AdminNavbar";
 import AdminDrawer from "./AdminDrawer";
 import { Flex, Grid, GridItem, Box, Text, SimpleGrid } from "@chakra-ui/layout";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 export default function Dashboard() {
   const Kiosk = [
     { name: "Leave Table", link: "/leave-requests" },
     { name: "Approve Leave Requests", link: "/leave-decision" },
     { name: "Employee Share Trust Fund " },
-    { name: "General Information" },
+    { name: "Employee Management", link: '/admin/employee' },
   ];
   return (
-    <Box>
+    <Box className="admin-bg">
       <AdminNavbar />
 
       <Box w="100%" color="black">

@@ -13,6 +13,7 @@ import Info from "./pages/info.jsx";
 import Profile from "./pages/Profile.jsx";
 import Requisition from "./pages/Requisition.jsx";
 import Dashboard from "./admin/Dashboard.jsx";
+import Employee from "./admin/Employee.jsx";
 import LeaveRequests from "./admin/LeaveRequests.jsx";
 import Decision from "./admin/Decision.jsx";
 import { Provider } from "react-redux";
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
     element: <Loan />,
   },
   {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
     path: "/dashboard",
     element: <Dashboard />,
   },
@@ -55,16 +60,16 @@ const router = createBrowserRouter([
     element: <Decision />,
   },
   {
+    path: "/admin/employee",
+    element: <Employee />,
+  },
+  {
     path: "/requisition",
     element: <Requisition />,
   },
   {
     path: "/general-information",
     element: <Info />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
   },
 ]);
 

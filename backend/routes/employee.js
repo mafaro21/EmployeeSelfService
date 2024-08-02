@@ -12,6 +12,13 @@ router.post('/add', async (req, res) => {
     res.send('adding employee')
 })
 
+//search employee
+router.get('/search', async (req, res) => {
+    if (!req) { return res.status(400) }
+
+    res.send('searching employee')
+})
+
 //editing employee
 router.put('/edit', async (req, res) => {
     if (!req) { return res.status(400) }
