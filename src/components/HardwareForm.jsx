@@ -111,10 +111,10 @@ export default function HardwareForm() {
                     <Text as='u' fontSize={{ md: 'xl' }}>Hardware Needed</Text>
                     <CheckboxGroup onChange={handleHardwareChange} value={selectedHardware}>
                         <HStack spacing={4} mt='2' fontSize={{ md: 'xl' }}>
-                            <Checkbox value="laptop" colorScheme='orange'>Laptop</Checkbox>
-                            <Checkbox value="desktop" colorScheme='orange'>Desktop</Checkbox>
-                            <Checkbox value="printer" colorScheme='orange'>Printer</Checkbox>
-                            <Checkbox value="adapter" colorScheme='orange'>Power Adapter</Checkbox>
+                            <Checkbox value="laptop" borderColor={'#bdbdbd'} colorScheme='orange'>Laptop</Checkbox>
+                            <Checkbox value="desktop" borderColor={'#bdbdbd'} colorScheme='orange'>Desktop</Checkbox>
+                            <Checkbox value="printer" borderColor={'#bdbdbd'} colorScheme='orange'>Printer</Checkbox>
+                            <Checkbox value="adapter" borderColor={'#bdbdbd'} colorScheme='orange'>Power Adapter</Checkbox>
                         </HStack>
                     </CheckboxGroup>
                 </FormControl>
@@ -123,9 +123,9 @@ export default function HardwareForm() {
                     <Text as='u' fontSize={{ md: 'xl' }}>Software to Install</Text>
                     <CheckboxGroup onChange={handleSoftwareChange} value={selectedSoftware} >
                         <HStack spacing={4} mt='2'>
-                            <Checkbox value="Microsoft Office" fontSize={{ md: 'xl' }} colorScheme='orange'>Microsoft Office</Checkbox>
-                            <Checkbox value="Adobe Acrobat" colorScheme='orange'>Adobe Acrobat</Checkbox>
-                            <Checkbox value="Google Chrome" colorScheme='orange'>Google Chrome</Checkbox>
+                            <Checkbox value="Microsoft Office" fontSize={{ md: 'xl' }} borderColor={'#bdbdbd'} colorScheme='orange'>Microsoft Office</Checkbox>
+                            <Checkbox value="Adobe Acrobat" borderColor={'#bdbdbd'} colorScheme='orange'>Adobe Acrobat</Checkbox>
+                            <Checkbox value="Google Chrome" borderColor={'#bdbdbd'} colorScheme='orange'>Google Chrome</Checkbox>
                             {/* <Checkbox value="Belina" colorScheme='orange'>Belina</Checkbox>
                             <Checkbox value="Quick Books" colorScheme='orange'>Quick Books</Checkbox>
                             <Checkbox value="Pastel" colorScheme='orange'>Pastel</Checkbox> */}
@@ -140,6 +140,7 @@ export default function HardwareForm() {
                         size="md"
                         onChange={(e) => setReason(e.target.value)}
                         value={reason}
+                        borderColor={'#bdbdbd'}
                         focusBorderColor='#FF6201'
                         mt='2'
                     />
@@ -153,6 +154,7 @@ export default function HardwareForm() {
                         onChange={(e) => setAdditionalDetails(e.target.value)}
                         value={additionalDetails}
                         mt='2'
+                        borderColor={'#bdbdbd'}
                         focusBorderColor='#FF6201'
                     />
                 </FormControl>

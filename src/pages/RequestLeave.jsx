@@ -231,7 +231,7 @@ export default function test() {
                             mt='6'
                             onClick={handleSubmit}
                             type="submit"
-
+                            mb={{ base: '40px' }}
                         >
                             Submit Leave Application
                         </Button>

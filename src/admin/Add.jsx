@@ -22,11 +22,11 @@ export default function Add() {
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const addemployee = [
-        { data: 'First Name', place: 'Enter the Name', type: 'name', info: (e) => setName(e.target.value), value: 'firstName' },
+        { data: 'First Name', place: 'Enter the Name', type: 'name', value: 'firstName' },
         { data: 'Last Name', place: 'Enter the Name', type: 'name', value: 'lastName' },
-        { data: 'Address', place: 'Enter the Description', type: 'name', info: (e) => setDescription(e.target.value), value: 'address' },
-        { data: 'Date of Birth', place: 'Enter the Price', type: 'name', info: (e) => setPrice(e.target.value), value: 'dob' },
-        { data: 'Gender', place: 'Enter the Gender', type: 'name', info: (e) => setGender(e.target.value), value: 'gender' },
+        { data: 'Address', place: 'Enter the Address', type: 'name', value: 'address' },
+        { data: 'Date of Birth', place: 'Enter the Date', type: 'name', value: 'dob' },
+        { data: 'Gender', place: 'Enter the Gender', type: 'name', value: 'gender' },
         { data: 'National ID', place: 'Enter the National ID', type: 'name', value: 'id' },
         { data: 'Email', place: 'Enter the Email', type: 'name', value: 'email' },
         { data: 'Phone Number', place: 'Enter the Phone Number', type: 'number', value: 'number' },
@@ -70,16 +70,16 @@ export default function Add() {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className='.admin-bg'>
-                <Box mt={3} p={7} borderRadius={'12px'} style={{ border: '2px solid #9B3922' }}>
+                <Box mt={3} p={{ base: 3, md: 7 }} borderRadius={'12px'} style={{ border: '2px solid #9B3922' }}>
                     <Text fontSize={'lg'} textAlign={'center'}>Add a new employee</Text>
-                    <VStack spacing={4} mt='' p='9'>
+                    <VStack spacing={4} mt='' p={{ base: 0, md: 9 }}>
                         {/* {errorMessage} */}
                         {/* <form onSubmit={handleSubmit(onSubmit)}> */}
                         {addemployee.map((add, index) =>
 
                             <FormControl>
-                                <Flex>
-                                    <FormLabel mt={1} ><Text mt={1}>
+                                <Flex flexDirection={{ base: 'column', md: 'row' }}>
+                                    <FormLabel mt={{ base: 4, md: 1 }} ><Text mt={1}>
                                         {add.data}
                                     </Text> </FormLabel>
                                     <Spacer />
@@ -90,8 +90,8 @@ export default function Add() {
                                         {...register(add.value)}
                                         variant={'flushed'}
                                         isRequired={'true'}
-                                        focusBorderColor='black'
-                                        width={'88%'}
+                                        focusBorderColor='#f63'
+                                        width={{ base: '100%', md: '88%' }}
                                     // isInvalid={errorDiv ? 'red' : ''}
                                     />
                                 </Flex>

@@ -194,8 +194,8 @@ function Login() {
                 p="6"
                 mt="4"
                 bg="white"
-                borderRadius="xl"
-                onClick={() => setPlaceText(true)}
+                borderRadius="lg"
+                // onClick={() => setPlaceText(true)}
                 {...register('staffId', { pattern: /^[A-Za-z0-9]*$/ })}
                 aria-invalid={errors.staffId ? "true" : "false"}
                 placeholder="Enter your Staff ID"
@@ -211,7 +211,7 @@ function Login() {
               p='6'
               mt='2'
               bg='white'
-              borderRadius='xl'
+              borderRadius='lg'
               onClick={() => setPlaceText(true)}
               {...register('nationalId', { minLength: { value: 11, message: 'too short' }, maxLength: { value: 13, message: 'too long' } })}
               aria-invalid={errors.nationalId ? "true" : "false"}

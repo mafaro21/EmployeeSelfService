@@ -51,10 +51,10 @@ export default function Remove() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Box mt={3} p={7} borderRadius={'12px'} style={{ border: '2px solid #9B3922' }}>
                     <Text fontSize={'lg'} textAlign={'center'}>Delete employee </Text>
-                    <Flex>
+                    <Flex flexDirection={{ base: 'column', md: 'row' }}>
                         <Input type='name'
                             placeholder='search employee'
-                            ml={6}
+                            ml={{ base: 0, md: 6 }}
                             pl={4}
                             mr={6}
                             mt={6}

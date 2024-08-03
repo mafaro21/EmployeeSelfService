@@ -77,7 +77,7 @@ export default function Loan() {
                     </Box>
                     <Box display={{ md: "flex" }} mt='6'>
                         <Text mt='6'>Reason for Loan Application:</Text>
-                        <Select mt={{ md: '4' }} size='md' width={{ md: '19%', base: '79%' }} ml={{ md: '4' }}
+                        <Select mt={{ md: '4' }} size='md' width={{ md: '19%', base: '100%' }} ml={{ md: '4' }}
                             placeholder='Select Reason:'
                             borderColor={'#bdbdbd'}
                             focusBorderColor='#FF6201'
@@ -111,7 +111,7 @@ export default function Loan() {
                                     <Input
                                         mt={{ md: '4' }}
                                         size='md'
-                                        width={{ md: '80%' }}
+                                        width={{ base: '100%', md: '80%' }}
                                         {...register('loanAmount')}
                                         type='number' placeholder='enter loan amount'
                                         borderColor={'#bdbdbd'}
@@ -131,7 +131,7 @@ export default function Loan() {
                                     <Input
                                         mt={{ md: '4' }}
                                         size='md'
-                                        width={{ md: '80%' }}
+                                        width={{ base: '100%', md: '80%' }}
                                         {...register('loanInstallment')}
                                         type='number' placeholder='enter loan installment'
                                         borderColor={'#bdbdbd'}
@@ -163,7 +163,7 @@ export default function Loan() {
                                     <Input
                                         mt={{ md: '4' }}
                                         size='md'
-                                        width={{ md: '80%' }}
+                                        width={{ base: '100%', md: '80%' }}
                                         {...register('gross')}
                                         type='number' placeholder='enter loan amount'
                                         borderColor={'#bdbdbd'}
@@ -183,7 +183,7 @@ export default function Loan() {
                                     <Input
                                         mt={{ md: '4' }}
                                         size='md'
-                                        width={{ md: '80%' }}
+                                        width={{ base: '100%', md: '80%' }}
                                         {...register('net')}
                                         type='number' placeholder='enter loan installment'
                                         borderColor={'#bdbdbd'}
@@ -198,7 +198,7 @@ export default function Loan() {
                     <Box mt='7'>
                         <Text as='u' fontSize={{ md: 'xl' }}>Bank account to be credited into</Text>
                         {bankDetails.map((bank, key) => (
-                            <Flex mt='2'>
+                            <Flex mt='2' flexDirection={{ base: 'column', md: 'row' }}>
 
                                 <Text mt={{ md: '6', base: '3' }} >{bank.name} :</Text>
                                 <Spacer />
@@ -211,7 +211,7 @@ export default function Loan() {
                                     {...register(bank.value)}
                                     focusBorderColor='#FF6201'
                                     borderColor={'#bdbdbd'}
-                                    width={'85%'}
+                                    width={{ base: '100%', md: '85%' }}
                                     required
                                 />
                             </Flex>
