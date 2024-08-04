@@ -10,11 +10,13 @@ const employeeRoute = require('./routes/employee.js')
 const leaveRoute = require('./routes/leave.js')
 const loanRoute = require('./routes/loan.js')
 const authRoute = require('./routes/auth.js')
+const requestRoute = require('./routes/request.js')
 
 app.use('/auth', authRoute)
 app.use('/employee', employeeRoute)
 app.use('/leave', leaveRoute)
 app.use('/loan', loanRoute)
+app.use('/request', requestRoute)
 
 app.get('/', (req, res) => {
     res.send('its working')

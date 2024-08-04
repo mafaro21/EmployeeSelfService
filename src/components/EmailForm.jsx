@@ -22,7 +22,8 @@ import {
     Spinner,
 } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react'
-
+import axios from "axios";
+import Loader from './Loader';
 
 export default function EmailForm() {
 
@@ -38,28 +39,43 @@ export default function EmailForm() {
         setDomain(value);
     };
 
+    const data = {
+        domain,
+        reason
+    }
+
     const handleSubmit = () => {
         setErrorDiv(false)
         setLoading(true)
 
         if (Validation()) {
-            console.log({
-                domain,
-                reason,
-            });
-
-            toast({
-                title: 'Success',
-                description: 'Looks good',
-                status: 'success',
-                duration: 4000,
-                isClosable: true,
-                position: 'top-right'
-            })
+            axios.post('http://localhost:8888/request/email', data)
+                .then((res) => {
+                    toast({
+                        title: 'Your request has been sent',
+                        description: 'Looks good',
+                        status: 'success',
+                        duration: 4000,
+                        isClosable: true,
+                        position: 'top-right'
+                    })
+                    console.log(res.data)
+                })
+                .catch((err) => {
+                    toast({
+                        title: 'Error sending request',
+                        description: 'Looks good',
+                        status: 'error',
+                        duration: 4000,
+                        isClosable: true,
+                        position: 'top-right'
+                    })
+                    console.log(err)
+                })
+                .finally(() => {
+                    setLoading(false)
+                })
         }
-
-
-        setLoading(false)
     };
 
     const Validation = () => {
@@ -79,17 +95,6 @@ export default function EmailForm() {
             return true
         }
     }
-
-    const Loader = loading ? // loading circle
-        <Box pt={4}>
-            <Spinner
-                color='#007a41'
-                p={4}
-                thickness='3px'
-                speed='0.85s'
-                emptyColor='gray.200'
-            />
-        </Box> : ''
 
     const errorMessage = errorDiv ?
         <div style={{ color: "red", fontSize: "18px" }}>{errorText}</div>
@@ -125,7 +130,7 @@ export default function EmailForm() {
                 </FormControl>
                 {errorMessage}
 
-                {loading ? Loader :
+                {loading ? <Loader /> :
                     <Button colorScheme="orange" mt={4} onClick={handleSubmit} mb='10'>
                         Submit Email Requisition
                     </Button>
