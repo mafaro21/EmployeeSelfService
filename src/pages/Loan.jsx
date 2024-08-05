@@ -16,7 +16,7 @@ import Loader from '../components/Loader'
 
 export default function Loan() {
 
-    const [currency, setCurrency] = useState('ZWL')
+    const [currency, setCurrency] = useState('ZiG')
     const [declaration, setDeclaration] = useState(false)
 
     const [loading, setLoading] = useState(false) // loading circle when user has submitted their id
@@ -96,7 +96,7 @@ export default function Loan() {
                         <Flex>
                             <Text mt='2'>Choose Currency:</Text>
                             <Select width={{ md: '8%' }} borderColor={'#bdbdbd'} ml='4' {...register('currency')} onChange={(e) => setCurrency(e.target.value)} focusBorderColor='#FF6201'>
-                                <option value='ZWL'>ZWL</option>
+                                <option value='ZiG'>ZiG</option>
                                 <option value='USD'>USD</option>
                             </Select>
                         </Flex>

@@ -22,14 +22,14 @@ export default function Add() {
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const addemployee = [
-        { data: 'First Name', place: 'Enter the Name', type: 'name', value: 'firstName' },
-        { data: 'Last Name', place: 'Enter the Name', type: 'name', value: 'lastName' },
-        { data: 'Address', place: 'Enter the Address', type: 'name', value: 'address' },
-        { data: 'Date of Birth', place: 'Enter the Date', type: 'name', value: 'dob' },
+        { data: 'First Name', place: 'Enter the Name', type: 'name', value: 'firstname' },
+        { data: 'Last Name', place: 'Enter the Name', type: 'name', value: 'lastname' },
         { data: 'Gender', place: 'Enter the Gender', type: 'name', value: 'gender' },
-        { data: 'National ID', place: 'Enter the National ID', type: 'name', value: 'id' },
+        { data: 'Address', place: 'Enter the Address', type: 'name', value: 'address' },
         { data: 'Email', place: 'Enter the Email', type: 'name', value: 'email' },
-        { data: 'Phone Number', place: 'Enter the Phone Number', type: 'number', value: 'number' },
+        { data: 'Date of Birth', place: 'Enter the Date', type: 'date', value: 'dateofbirth' },
+        { data: 'National ID', place: 'Enter the National ID', type: 'name', value: 'nationalid' },
+        { data: 'Phone Number', place: 'Enter the Phone Number', type: 'number', value: 'phonenumber' },
         // { data: 'Image', place: 'Enter the Name', type: 'name' },
         // { data: 'Image', place: 'Enter the Name', type: 'name' },
         // { data: 'Image', place: 'Enter the Name', type: 'name' },
@@ -52,7 +52,6 @@ export default function Add() {
                     position: "top-right",
                 });
 
-                // setName && setdescription && setPrice && setGender === ''
             })
             .catch((err) => {
                 console.log(err)

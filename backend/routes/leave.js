@@ -8,7 +8,7 @@ router.post('/request', async (req, res) => {
 
     const { leave_type, start_date, end_date } = req.body
 
-    conn.query('INSERT INTO loan (leave_type, start_date, end_date) VALUES (?,?,?)', [leave_type, start_date, end_date], (error, results, fields) => {
+    conn.query('INSERT INTO leave (leave_type, start_date, end_date) VALUES (?,?,?)', [leave_type, start_date, end_date], (error, results, fields) => {
         console.log('working')
         if (error) {
             res.send('Error executing query:', error.stack);

@@ -1,0 +1,18 @@
+- loading for admin side
+- state management
+- better db structure
+- react query
+- authentication token
+- searching
+- clearing fields after adding employee
+- calculate loan installment
+- current user details in edit profile
+
+LEAVE
+date of application
+date of decision
+status
+
+EMPLOYEE 
+status of employment
+marital status

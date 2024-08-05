@@ -7,7 +7,27 @@ router.post('/apply', async (req, res) => {
     if (!req) { return res.status(400) }
     console.log(req.body)
 
-    res.send('loan application')
+    // const { } = req.body
+
+    // conn.query('INSERT INTO loan () VALUES ()', [], (error, results, fields) => {
+    //     if (error) {
+    //         res.send('Error executing query:', error.stack);
+    //         return;
+    //     }
+    //     res.send(results)
+    // })
+
+    // reason
+    // currency
+    // loanAmount
+    // loanInstallment
+    // gross
+    // net
+    // accName
+    // bank
+    // accNum
+    // branchName
+    // branchCode 
 })
 
 //loan decision

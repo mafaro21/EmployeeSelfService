@@ -162,7 +162,7 @@ function Login() {
         console.log(error);
         toast({
           title: "This user may not exist",
-          description: "You have successfully logged in.",
+          description: "Please enter valid credentials",
           status: "error",
           duration: 4000,
           isClosable: true,

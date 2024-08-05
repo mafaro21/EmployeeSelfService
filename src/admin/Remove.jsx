@@ -71,8 +71,8 @@ export default function Remove() {
             {dbData.length > 0 ?
                 <TableContainer mt={8}>
                     <Table colorScheme='teal'>
-                        <Thead>
-                            <Tr color={'white'}>
+                        <Thead color={'white'}>
+                            <Tr >
                                 <Th>employee Name</Th>
                                 <Th>Description</Th>
                                 <Th isNumeric>Price</Th>

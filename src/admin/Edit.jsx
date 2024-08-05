@@ -34,9 +34,10 @@ export default function Edit() {
     const onSubmit = (data) => {
         // e.preventDefault()
 
-        axios.get(`http://localhost:8888/employee/search/?q=${data}`)
+        // axios.get(`http://localhost:8888/employee/search/?q=${data}`)
+        axios.get(`http://localhost:8888/employee/search/`, data)
             .then((res) => {
-                console.log(res.data)
+                setdbData(res.data)
                 // toast({
                 //     title: "Search Error",
                 //     description: "You've added a new employee",
@@ -90,17 +91,21 @@ export default function Edit() {
                     <Table colorScheme='teal'>
                         <Thead>
                             <Tr color={'white'}>
-                                <Th>employee Name</Th>
-                                <Th>Description</Th>
-                                <Th isNumeric>Price</Th>
+                                <Th>First Name</Th>
+                                <Th>Last Name</Th>
+                                <Th>National ID</Th>
+                                <Th>Gender</Th>
+                                <Th>Date of Engagement</Th>
                             </Tr>
                         </Thead>
                         {dbData.map(data => (
                             <Tbody>
                                 <Tr>
-                                    <Td>{data.employees_name}</Td>
-                                    <Td>{data.description}</Td>
-                                    <Td isNumeric>{data.price}</Td>
+                                    <Td>{data.first_name}</Td>
+                                    <Td>{data.last_name}</Td>
+                                    <Td>{data.national_id}</Td>
+                                    <Td>{data.gender}</Td>
+                                    <Td isNumeric>{data.join_date}</Td>
                                 </Tr>
                             </Tbody>
                         ))}
