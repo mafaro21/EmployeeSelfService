@@ -7,11 +7,13 @@ const conn = require('../database')
 router.post('/add', async (req, res) => {
     if (!req) { return res.status(400) }
 
-    const { firstname, lastname, gender, address, email, dateofbirth, nationalid, phonenumber } = req.body
+    const { firstname, lastname, gender, address, email, dateofbirth, nationalid, phonenumber, maritalstatus } = req.body
 
     const joindate = new Date()
 
-    conn.query('INSERT INTO employee (first_name, last_name, gender, address, email, date_of_birth, national_id, join_date, phone_number) VALUES (?,?,?,?,?,?,?,?,?)', [firstname, lastname, gender, address, email, dateofbirth, nationalid, joindate, phonenumber], (error, results, fields) => {
+    const employmentStatus = 'active'
+
+    conn.query('INSERT INTO employee (first_name, last_name, gender, address, email, date_of_birth, national_id, join_date, phone_number, status_of_employment, marital_status ) VALUES (?,?,?,?,?,?,?,?,?,?,?)', [firstname, lastname, gender, address, email, dateofbirth, nationalid, joindate, phonenumber, employmentStatus, maritalstatus], (error, results, fields) => {
         console.log('working')
         if (error) {
             res.send('Error executing query:', error.stack);
@@ -22,21 +24,20 @@ router.post('/add', async (req, res) => {
 })
 
 //search employee
-router.get('/search', async (req, res) => {
+router.post('/search', async (req, res) => {
     if (!req) { return res.status(400) }
 
-    // const { q } = req.query
+    const { search } = req.body
 
-    // console.log(req.body)
-
-    const q = 'mafaro'
-
-    conn.query('SELECT * FROM employee WHERE first_name LIKE (?)', [`%${q}%`], (error, results, fields) => {
+    conn.query('SELECT * FROM employee WHERE first_name LIKE (?) OR last_name LIKE (?)', [`%${search}%`, `%${search}%`], (error, results, fields) => {
         if (error) {
             res.send('Error executing query:', error.stack);
             return;
+        } else if (results.length >= 1) {
+            res.send(results)
+        } else {
+            res.sendStatus(404)
         }
-        res.send(results)
     })
 })
 

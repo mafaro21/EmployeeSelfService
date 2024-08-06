@@ -3,16 +3,12 @@
 - better db structure
 - react query
 - authentication token
-- searching
-- clearing fields after adding employee
+-- searching (6/8)
+-- clearing fields after adding employee (6/8)
 - calculate loan installment
-- current user details in edit profile
+- current user details in edit profile 
 
 LEAVE
 date of application
 date of decision
 status
-
-EMPLOYEE 
-status of employment
-marital status

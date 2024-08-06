@@ -4,11 +4,20 @@ import {
     Input,
     Center,
     VStack,
-    useToast
+    useToast, Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import { EditIcon } from '@chakra-ui/icons'
 
 
 export default function Remove() {
@@ -16,74 +25,81 @@ export default function Remove() {
     const [dbData, setdbData] = useState('')
     const { register, formState: { errors }, handleSubmit } = useForm()
 
-    const onSubmit = (data) => {
-        // e.preventDefault()
-
-        axios.get(`http://localhost:8888/employee/search/?q=${data}`)
+    const onSubmit = async (data) => {
+        axios.post('http://localhost:8888/employee/search', data)
             .then((res) => {
-                console.log(res.data)
-                // toast({
-                //     title: "Search Error",
-                //     description: "You've added a new employee",
-                //     status: "success",
-                //     duration: 4000,
-                //     isClosable: true,
-                //     position: "top-right",
-                // });
-                // dispatch(setPage({ data: 'res.data' }))
-                // console.log(res.data)
+                setdbData(res.data)
+
+                toast({
+                    title: "Search Complete",
+                    status: "success",
+                    duration: 4000,
+                    isClosable: true,
+                    position: "top-right",
+                });
             })
             .catch((err) => {
                 console.log(err)
                 toast({
                     title: "Search Error",
-                    description: "You've added a new employee",
+                    description: "Record may not exist",
                     status: "error",
                     duration: 4000,
                     isClosable: true,
                     position: "top-right",
                 });
             })
+
     }
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Box mt={3} p={7} borderRadius={'12px'} style={{ border: '2px solid #9B3922' }}>
-                    <Text fontSize={'lg'} textAlign={'center'}>Delete employee </Text>
-                    <Flex flexDirection={{ base: 'column', md: 'row' }}>
-                        <Input type='name'
-                            placeholder='search employee'
-                            ml={{ base: 0, md: 6 }}
-                            pl={4}
-                            mr={6}
-                            mt={6}
-                            {...register('search')}
-                            variant={'flushed'}
-                            focusBorderColor='black'
-                        />
-                        <Button bg='#F2613F' mt='6' type='submit'>Search employee</Button>
-                    </Flex>
+                <Center>
+                    <Box w={'60%'} mt={3} p={7} borderRadius={'12px'} style={{ border: '2px solid #9B3922' }}>
+                        <Text fontSize={'lg'} textAlign={'center'}>search employee </Text>
+                        <Flex flexDirection={{ base: 'column', md: 'row' }}>
+                            <Input type='name'
+                                placeholder='search employee'
+                                ml={{ base: 0, md: 6 }}
+                                pl={4}
+                                mr={6}
+                                mt={6}
+                                {...register('search')}
+                                variant={'flushed'}
+                                focusBorderColor='#F63'
+                            />
+                            <Button bg='#F2613F' mt='6' type='submit'>Search Employee</Button>
 
-                </Box>
+                        </Flex>
+                    </Box>
+                </Center>
             </form>
 
             {dbData.length > 0 ?
-                <TableContainer mt={8}>
+                <TableContainer mt={16}>
                     <Table colorScheme='teal'>
-                        <Thead color={'white'}>
-                            <Tr >
-                                <Th>employee Name</Th>
-                                <Th>Description</Th>
-                                <Th isNumeric>Price</Th>
+                        <Thead>
+                            <Tr color={'white'}>
+                                <Th>First Name</Th>
+                                <Th>Last Name</Th>
+                                <Th>National ID</Th>
+                                <Th>Gender</Th>
+                                <Th>Employment Status</Th>
+                                <Th>Date of Engagement</Th>
+                                <Th>Action</Th>
                             </Tr>
                         </Thead>
                         {dbData.map(data => (
                             <Tbody>
                                 <Tr>
-                                    <Td>{data.employees_name}</Td>
-                                    <Td>{data.description}</Td>
-                                    <Td isNumeric>{data.price}</Td>
+                                    <Td>{data.first_name}</Td>
+                                    <Td>{data.last_name}</Td>
+                                    <Td>{data.national_id}</Td>
+                                    <Td>{data.gender}</Td>
+                                    <Td>{data.status_of_employment}</Td>
+                                    <Td>{new Date(data.join_date).toLocaleDateString()}</Td>
+                                    <Td><EditIcon /></Td>
                                 </Tr>
                             </Tbody>
                         ))}
