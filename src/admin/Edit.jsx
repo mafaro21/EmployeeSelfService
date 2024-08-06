@@ -13,6 +13,8 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    Skeleton,
+    Stack
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import axios from 'axios'
@@ -30,20 +32,17 @@ export default function Edit() {
     const [dbData, setdbData] = useState('')
     const [date, setDate] = useState('')
     const [errData, seterrData] = useState('')
+    const [loading, setLoading] = useState(false)
     const { register, formState: { errors }, handleSubmit } = useForm()
 
 
 
     const onSubmit = async (data) => {
-        // e.preventDefault()
-        // axios.get(`http://localhost:8888/employee/search?q=${data}`)
+        setdbData('')
+        setLoading(true)
         axios.post('http://localhost:8888/employee/search', data)
             .then((res) => {
                 setdbData(res.data)
-                // const properDate = new Date(res.data.join_date)
-                // setDate(properDate)
-                // console.log(new Date(res.data.join_date))
-                // console.log(res.data.join_date)
 
                 toast({
                     title: "Search Complete",
@@ -53,8 +52,6 @@ export default function Edit() {
                     isClosable: true,
                     position: "top-right",
                 });
-                // dispatch(setPage({ data: 'res.data' }))
-                // console.log(res.data)
             })
             .catch((err) => {
                 console.log(err)
@@ -66,6 +63,9 @@ export default function Edit() {
                     isClosable: true,
                     position: "top-right",
                 });
+            })
+            .finally(() => {
+                setLoading(false)
             })
 
     }
@@ -94,38 +94,47 @@ export default function Edit() {
                 </Center>
             </form>
 
-            {dbData.length > 0 ?
-                <TableContainer mt={16} borderTop={'1px solid white'} >
-                    <Table colorScheme='teal' >
-                        <Thead>
-                            <Tr color={'white'}>
-                                <Th>First Name</Th>
-                                <Th>Last Name</Th>
-                                <Th>National ID</Th>
-                                <Th>Gender</Th>
-                                <Th>Employment Status</Th>
-                                <Th>Date of Engagement</Th>
-                                <Th>Action</Th>
-                            </Tr>
-                        </Thead>
-                        {dbData.map(data => (
-                            <Tbody>
-                                <Tr>
-                                    <Td>{data.first_name}</Td>
-                                    <Td>{data.last_name}</Td>
-                                    <Td>{data.national_id}</Td>
-                                    <Td>{data.gender}</Td>
-                                    <Td>{data.status_of_employment}</Td>
-                                    <Td>{new Date(data.join_date).toLocaleDateString()}</Td>
-                                    <Td><EditIcon /></Td>
+            {loading ?
+                <Center>
+                    <Stack mt={16} w={'90%'} spacing={4}>
+                        <Skeleton height={'18px'} fadeDuration={4} />
+                        <Skeleton height={'18px'} fadeDuration={4} />
+                    </Stack>
+                </Center>
+                :
+                dbData.length > 0 ?
+                    <TableContainer mt={16} borderTop={'1px solid white'} >
+                        <Table colorScheme='teal' >
+                            <Thead>
+                                <Tr color={'white'}>
+                                    <Th>First Name</Th>
+                                    <Th>Last Name</Th>
+                                    <Th>National ID</Th>
+                                    <Th>Gender</Th>
+                                    <Th>Employment Status</Th>
+                                    <Th>Date of Engagement</Th>
+                                    <Th>Action</Th>
                                 </Tr>
-                            </Tbody>
-                        ))}
-                    </Table>
-                </TableContainer>
-                : <Center mt={8}>
-                    <Text>No employees to display</Text>
-                </Center>}
+                            </Thead>
+                            {dbData.map(data => (
+                                <Tbody>
+                                    <Tr>
+                                        <Td>{data.first_name}</Td>
+                                        <Td>{data.last_name}</Td>
+                                        <Td>{data.national_id}</Td>
+                                        <Td>{data.gender}</Td>
+                                        <Td>{data.status_of_employment}</Td>
+                                        <Td>{new Date(data.join_date).toLocaleDateString()}</Td>
+                                        <Td><EditIcon /></Td>
+                                    </Tr>
+                                </Tbody>
+                            ))}
+                        </Table>
+                    </TableContainer>
+                    : <Center mt={8}>
+                        <Text>No employees to display</Text>
+                    </Center>
+            }
 
 
         </>

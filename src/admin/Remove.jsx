@@ -26,6 +26,7 @@ export default function Remove() {
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const onSubmit = async (data) => {
+        setdbData('')
         axios.post('http://localhost:8888/employee/search', data)
             .then((res) => {
                 setdbData(res.data)
