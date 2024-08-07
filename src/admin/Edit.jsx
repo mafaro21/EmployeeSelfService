@@ -14,6 +14,7 @@ import {
     TableCaption,
     TableContainer,
     Skeleton,
+    SkeletonText,
     Stack
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
@@ -33,9 +34,8 @@ export default function Edit() {
     const [date, setDate] = useState('')
     const [errData, seterrData] = useState('')
     const [loading, setLoading] = useState(false)
+
     const { register, formState: { errors }, handleSubmit } = useForm()
-
-
 
     const onSubmit = async (data) => {
         setdbData('')
@@ -57,7 +57,7 @@ export default function Edit() {
                 console.log(err)
                 toast({
                     title: "Search Error",
-                    description: "Record may not exist",
+                    description: "Employee may not exist",
                     status: "error",
                     duration: 4000,
                     isClosable: true,
@@ -97,8 +97,8 @@ export default function Edit() {
             {loading ?
                 <Center>
                     <Stack mt={16} w={'90%'} spacing={4}>
-                        <Skeleton height={'18px'} fadeDuration={4} />
-                        <Skeleton height={'18px'} fadeDuration={4} />
+                        {/* <Skeleton height={'18px'} fadeDuration={4} /> */}
+                        <SkeletonText noOfLines={3} spacing='4' skeletonHeight='3' startColor='white' endColor='#F63E02' />
                     </Stack>
                 </Center>
                 :

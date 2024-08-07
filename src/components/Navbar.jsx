@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import '../App.css'
 import MyImage from '../img/prov wo bg.png'
 import Drawer from './Drawer'
@@ -31,7 +31,6 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import { Link, useNavigate, redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { authActions } from '../Store/Auth'
-import { useEffect } from 'react'
 import { useToast } from '@chakra-ui/react'
 
 
@@ -55,17 +54,17 @@ function Navbar() {
 
     // useEffect(() => {
     //     if (isLogged) {
-    //         setName(Employee.first_name + ' ' + Employee.surname)
+    //         setName(Employee.first_name + ' ' + Employee.last_name)
 
     //     } else {
-    //         // toast({
-    //         //     title: 'You are not logged in',
-    //         //     description: "You are not able to access the site without logging in.",
-    //         //     status: 'error',
-    //         //     duration: 6000,
-    //         //     isClosable: true,
-    //         //     position: 'top-right'
-    //         // })
+    //         toast({
+    //             title: 'You are not logged in',
+    //             description: "You are not able to access the site without logging in.",
+    //             status: 'error',
+    //             duration: 6000,
+    //             isClosable: true,
+    //             position: 'top-right'
+    //         })
     //         navigate('/login')
     //         // return redirect("/dashboard");
     //     }

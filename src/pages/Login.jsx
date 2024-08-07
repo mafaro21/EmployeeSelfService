@@ -138,14 +138,14 @@ function Login() {
     axios.post(`http://localhost:8888/auth/login`, data)
       .then((res) => {
         console.log(res.data);
-        // const empData = res.data;
-        // dispatch(
-        //   authActions.setLogin({
-        //     employee: empData.employee,
-        //     token: empData.token,
-        //     isAuthenticated: true,
-        //   })
-        // );
+        const empData = res.data;
+        dispatch(
+          authActions.setLogin({
+            employee: empData[0],
+            // token: empData.token,
+            isAuthenticated: true,
+          })
+        );
 
         toast({
           title: "Logged In!",

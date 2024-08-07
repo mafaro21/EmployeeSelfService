@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     employee: null,
-    error: "",
+    // error: "",
     isAuthenticated: false,
-    role: null,
-    token: null,
+    // role: null,
+    // token: null,
 }
 
 const authSlice = createSlice({
@@ -15,16 +15,16 @@ const authSlice = createSlice({
     reducers: {
         setLogin: (state, action) => {
             state.employee = action.payload.employee;
-            state.token = action.payload.token;
-            (state.isAuthenticated = action.payload.isAuthenticated),
-                (state.role = action.payload.employee.role);
+            // state.token = action.payload.token;
+            (state.isAuthenticated = action.payload.isAuthenticated);
+            // (state.role = action.payload.employee.role);
         },
 
         setLogout: (state, action) => {
             state.employee = null;
-            state.token = null;
+            // state.token = null;
             state.isAuthenticated = false;
-            state.role = null;
+            // state.role = null;
         },
 
 

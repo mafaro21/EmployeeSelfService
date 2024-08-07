@@ -4,7 +4,8 @@ import { Container, Box, Text, Stack, Input, Flex, Button, useToast, Spacer } fr
 import { useForm } from "react-hook-form"
 import axios from 'axios'
 import Loader from '../components/Loader'
-
+import { useSelector } from 'react-redux'
+import { authActions } from '../Store/Auth'
 export default function Profile() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -13,16 +14,29 @@ export default function Profile() {
     const [branchCode, setBranchCode] = useState('')
     const [loading, setLoading] = useState(false)
     const [disabled, setDisabled] = useState(true)
-    const { register, formState: { errors }, handleSubmit } = useForm()
     const toast = useToast();
+    const Employee = useSelector((state) => state.auth.employee)
+
+
+    const defaultValues = {
+        firstName: Employee.first_name,
+        lastName: Employee.last_name,
+        address: Employee.address,
+        email: Employee.email,
+        phonenumber: Employee.phone_number,
+        maritalstatus: Employee.marital_status,
+    };
+
+    const { register, formState: { errors }, handleSubmit } = useForm()
 
 
     const profile = [
-        { name: 'First Name', margin: '9', value: 'firstName', base: '9', place: 'from state', type: 'text' },
-        { name: 'Last Name', margin: '9', value: 'lastName', base: '9', place: 'from state', type: 'text' },
-        { name: 'Address', margin: '14', value: 'address', base: '14', place: 'from state', type: 'text' },
-        { name: 'Phone Number', margin: '1', value: 'phone', base: '1', place: '0123456', type: 'number' },
-        { name: 'Branch Code', margin: '6', value: 'branchCode', base: '6', place: 'from state', type: 'text' },
+        { name: 'First Name', margin: '9', value: 'firstName', base: '9', place: 'from state', type: 'text', default: defaultValues.firstName },
+        { name: 'Last Name', margin: '9', value: 'lastName', base: '9', place: 'from state', type: 'text', default: defaultValues.lastName },
+        { name: 'Address', margin: '14', value: 'address', base: '14', place: 'from state', type: 'text', default: defaultValues.address },
+        { name: 'Email', margin: '14', value: 'email', base: '14', place: 'from state', type: 'text', default: defaultValues.email },
+        { name: 'Phone Number', margin: '1', value: 'phone', base: '1', place: '0123456', type: 'number', default: defaultValues.phonenumber },
+        { name: 'Marital Status', margin: '6', value: 'maritalstatus', base: '6', place: 'from state', type: 'text', default: defaultValues.maritalstatus },
     ]
 
     const onSubmit = (data) => {
@@ -78,6 +92,7 @@ export default function Profile() {
                                 type={profile.type}
                                 // onChange={(e) => profile.value(e.target.value)}
                                 {...register(profile.value)}
+                                defaultValue={profile.default}
                                 borderColor={'#bdbdbd'}
                                 focusBorderColor='#FF6201'
                                 // value={profile.place}

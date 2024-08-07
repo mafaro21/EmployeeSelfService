@@ -30,15 +30,17 @@ function App() {
       .join(" ");
 
   useEffect(() => {
-    // document.title = 'Homepage'
+    document.title = 'Homepage'
     if (isLogged) {
       setName(toPascalCase(Employee.first_name));
     } else {
-      return;
+      return null;
     }
 
     currentTime();
-  });
+
+    console.log(Employee.first_name)
+  }, []);
 
   const currentTime = () => {
     const date = new Date();
@@ -76,7 +78,7 @@ function App() {
           fontSize={{ md: "3xl", base: "xl" }}
           style={{ fontWeight: "30px" }}
         >
-          <Text>
+          <Text color={'black'}>
             {time}
             {isLogged ? " " + name : " "}
           </Text>

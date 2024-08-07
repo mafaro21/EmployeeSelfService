@@ -33,7 +33,7 @@ export default function Requisition() {
     return (
         <>
             <Navbar />
-            <Container maxW='1100px' pt='4'>
+            <Container maxW='1100px' pt='4' bg={'blue'}>
                 <Box>
                     <Flex bg='' h='7' className='req'>
 
@@ -41,7 +41,7 @@ export default function Requisition() {
                             style={{ width: '50%', borderRight: '2px solid #ebeef0', borderBottom: `2px solid ${showPage === 'hardware' ? x : '#ebeef0'}` }}
                             onClick={() => setShowPage('hardware')}
                         >
-                            Hardware</Center>
+                            Hardwares</Center>
                         <Center
                             style={{ width: '50%', borderBottom: `2px solid ${showPage === 'email' ? x : '#ebeef0'}` }}
                             onClick={() => setShowPage('email')}
